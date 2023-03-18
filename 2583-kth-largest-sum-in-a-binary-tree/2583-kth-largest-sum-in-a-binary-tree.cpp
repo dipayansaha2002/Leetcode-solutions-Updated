@@ -32,7 +32,7 @@ public:
             pq.push(sum);
         }
         if( pq.size() < k ) return -1 ;
-        k -= 1;
+        k = k - 1;
         while(k--) pq.pop() ;
         
         return pq.top() ;
