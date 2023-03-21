@@ -5,7 +5,7 @@ public:
         ll ans = 0, p =0 ;
         for( int i=0; i<=nums.size(); i++ ){
 
-        if( i < nums.size() && nums[i] == 0 ){
+        if( i<nums.size() && nums[i] == 0 ){
         p++;    
         }
             else if(p != 0){
