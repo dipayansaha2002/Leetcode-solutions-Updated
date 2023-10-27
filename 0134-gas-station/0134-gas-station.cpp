@@ -1,20 +1,19 @@
 class Solution {
 public:
     int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
-        int n = gas.size();
-         int tot =0, mid =0,in=0;
-        for(int i =0 ;i < n ; i++){
-            tot += gas[i]-cost[i];
-            mid += gas[i]-cost[i];
-            
-            if( mid < 0 ){
-                mid = 0;
-                in = i+1;
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+        cout.tie(NULL);
+        int cm=0,mx=-2e9,mxidx=-1;
+        int n=cost.size();
+        for(int i=n-1;i>=0;i--){
+            cm+=gas[i]-cost[i];
+            if(cm>mx){
+                mx=cm;
+                mxidx=i;
             }
-        } 
-        if( tot < 0 ) 
-            return -1;
-        else 
-            return in;
+        }
+        if(cm>=0)return mxidx;
+        return -1;
     }
 };
