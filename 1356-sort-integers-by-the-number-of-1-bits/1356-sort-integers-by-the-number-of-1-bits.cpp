@@ -1,22 +1,31 @@
 class Solution {
 public:
+    int countSetBits(int n)
+    {
+        int count = 0;
+        while(n > 0)
+        {
+            n = n & (n - 1);
+            count++;
+        }
+        return count;
+    }
     vector<int> sortByBits(vector<int>& arr) {
-    unordered_map<int, vector<int>> v;
+        vector<pair<int,int>> bits;
 
-        for (auto i : arr) {
-            //v[i].push_back(i);
-            v[bitset<32>(i).count()].push_back(i);
+        for(auto x : arr)
+        {
+            int count = countSetBits(x);
+            bits.push_back({count,x});
         }
 
-        vector<int> res;
-        for (int k = 0; k <= 31; ++k) {
-            if (v.find(k) != v.end()) {
-                sort(v[k].begin(), v[k].end());
-                res.insert(res.end(), v[k].begin(), v[k].end());
-            }
+        sort(bits.begin(),bits.end());
+        vector<int> ans;
+        
+        for(auto x : bits)
+        {
+            ans.push_back(x.second);
         }
-
-        return res;
+        return ans;
     }
 };
-
