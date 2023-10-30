@@ -20,12 +20,10 @@ public:
     if(root == NULL){
         return 0;
     }
- int leftHeight = dfsHeight(root->left) ;
- if(leftHeight == -1)
-     return -1 ;  // IMP
-
+  int leftHeight = dfsHeight(root->left) ;
   int rightHeight = dfsHeight(root->right) ;
-  if(rightHeight == -1) 
+      
+  if(rightHeight == -1 || leftHeight == -1) 
       return -1 ;   // IMP
 
   if( abs(rightHeight - leftHeight) > 1 ) 
