@@ -18,8 +18,8 @@ public:
         int rightlength = maxDepth(root->right) ;
         int leftlength = maxDepth(root->left) ;
         
-        int h = 1 + max(rightlength, leftlength) ;
+        return 1 + max(rightlength, leftlength) ;
         
-        return h ;
+        //return h ;
     }
 };
