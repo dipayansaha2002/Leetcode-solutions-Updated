@@ -6,7 +6,7 @@ public:
 
         for (int i = 0; i < num.size(); i++) {
             int j = i + 1;
-            int k = i + 2;
+            int k = j + 1;
 
             if (k < num.size() && num[i] == num[j] && num[j] == num[k]) {
                 ans += num[i];
