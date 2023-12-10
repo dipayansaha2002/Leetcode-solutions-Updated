@@ -6,11 +6,11 @@ public:
         
         vector<vector<int>> ans ;
         
-        for(int i=0; i<m; i++){
+        for(int j=0; j<m; j++){
           vector<int> temp ;
             
-        for(int j=0; j<n; j++){
-          temp.push_back(matrix[j][i]) ;
+        for(int i=0; i<n; i++){
+          temp.push_back(matrix[i][j]) ;
         }
             ans.push_back(temp) ;
         }
