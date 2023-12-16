@@ -1,32 +1,30 @@
+#include <vector>
+using namespace std;
+
 class Solution {
 public:
     vector<int> rearrangeArray(vector<int>& nums) {
-        vector<int>neg;
-        vector<int>pos;
-        vector<int>ans;
-        
-        for(int i=0; i<nums.size(); i++){
-            if(nums[i]>0){
-                pos.push_back(nums[i]);
+        int n = nums.size();
+        vector<int> ans(n);
 
-            }
-            else{
-                neg.push_back(nums[i]);
+        int posIdx = 0, negIdx = 0;
+
+        for (int i = 0; i < n; i++) {
+            if (i % 2 == 0) {
+                // Place positive numbers at even indices
+                while (posIdx < n && nums[posIdx] <= 0) {
+                    posIdx++;
+                }
+                ans[i] = nums[posIdx++];
+            } else {
+                // Place negative numbers at odd indices
+                while (negIdx < n && nums[negIdx] >= 0) {
+                    negIdx++;
+                }
+                ans[i] = nums[negIdx++];
             }
         }
-        int k=0;
-        int l=0;
-        for(int i=0; i<nums.size(); i++){
-            if(i%2==0){
-                ans.push_back(pos[k]);
-                k++;
-            }
-            else{
-                ans.push_back(neg[l]);
-                l++;
-            }
-        }
+
         return ans;
-            
     }
 };
