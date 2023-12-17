@@ -35,7 +35,7 @@ int chk(TreeNode* root, int& ans){
     int lheight = max(0, chk(root->left, ans));
     int rheight = max(0, chk(root->right, ans));
     //int val = root->data ;
-    ans = max(ans , lheight + rheight + root->val);
+    ans = max(ans , (lheight + rheight) + root->val);
     return root->val + max(lheight, rheight);
 }
 };
