@@ -18,28 +18,17 @@ public:
 };
 */
 
-// class Node {
-// public:
-//     int val;
-//     vector<Node*> children;
-
-//     Node(int value) : val(value), children() {}
-// };
-
 class Solution {
 public:
     int maxDepth(Node* root) {
-        if (root == nullptr) {
-            return 0;
+        
+        if(!root) return 0;
+        
+        int maxCH = 0 ;
+        for(auto child : root->children){
+            int temp = maxDepth(child) ;
+            maxCH = max(maxCH,temp) ;
         }
-
-        int maxChildDepth = 0;
-
-        for (Node* child : root->children) {
-            int childDepth = maxDepth(child);
-            maxChildDepth = max(maxChildDepth, childDepth);
-        }
-
-        return 1 + maxChildDepth;
+        return 1+maxCH ;
     }
 };
