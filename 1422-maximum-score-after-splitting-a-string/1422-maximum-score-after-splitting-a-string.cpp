@@ -1,25 +1,21 @@
+
 class Solution {
-    public:
-    int maxScore(string s) {
-        int n = s.length();
+    public: int maxScore(string s) {
         int ones = 0;
-        int temp = s[0] == '0' ? 1 : 0;
-        int score = temp;
-        for (int i = 1; i < n-1; i++) {
+        int zeros = s[0] == '0' ? 1 : 0;
+        int score = zeros;
+
+        for (int i = 1; i < s.length() - 1; i++) {
             if (s[i] == '0') {
-                temp += 1;
+                zeros++;
             } else {
                 ones++;
-                temp -= 1;
             }
 
-            if (temp > score) {
-                score = temp;
-            }
+            int tmpScore = zeros - ones;
+            score = max(score, tmpScore);
         }
-        ones += (s[n-1] == '1' ? 1 : 0);
-       int scoreFinal = ones + score;
 
-        return scoreFinal;
+        return ones + score + (s[s.length() - 1] == '1' ? 1 : 0);
     }
 };
