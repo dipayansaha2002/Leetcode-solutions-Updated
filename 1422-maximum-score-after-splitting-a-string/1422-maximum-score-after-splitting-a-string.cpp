@@ -18,7 +18,8 @@ class Solution {
             }
         }
         ones += (s[n-1] == '1' ? 1 : 0);
+       int scoreFinal = ones + score;
 
-        return ones + score;
+        return scoreFinal;
     }
 };
