@@ -24,7 +24,7 @@ public:
         }
 
         // Return the result, cast to integer
-        //return static_cast<int>(dp[n][target]); 
-          return dp[n][target];
+        return static_cast<int>(dp[n][target]); 
+          //return dp[n][target];
     }
 };
