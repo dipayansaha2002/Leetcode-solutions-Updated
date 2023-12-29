@@ -1,37 +1,30 @@
 class Solution {
-    int dp[12][302];
-    public:
-    int minDifficulty(vector<int>& arr, int day) {
-        int n = arr.size();
+public:
+    int minDifficulty(vector<int>& jobDifficulty, int d) {
         
-        if(n<day) 
+        int n=jobDifficulty.size();
+        
+        if (n<d) // edge case
             return -1;
         
-        for(int i=0;i<=day;i++){
-            for(int j=0;j<=n;j++){
-                dp[i][j] = 1e6; 
-            }
-        } 
-        // base case. d=1
-        for(int i=0;i<n;i++)
-        { 
-            // returns max element between ith and nth index
-            dp[1][i] = *std::max_element(arr.begin()+i,arr.begin()+n);
-        }
-        for(int d= 2;d<=day;d++){
-            for(int i=0;i<n;i++){
-                // taking too manys days.. illegal case check
-                if(n-i<d){
-                    dp[d][i] = 1e6;
-                    continue;
+        int dp[302][2];// native array makes faster
+        
+        memset(dp, 1e6, sizeof(dp));// 1e6 is large enough
+        
+        dp[n][0]=0;
+        for (int sub=1; sub <= d; sub++) {
+             for (int i = n-sub; i >= 0; i--){
+                int sum = 1e6, next = 0;
+
+                for (int j= i; j <= n-sub; j++) {
+                    next = max(next, jobDifficulty[j]);
+                    //if (rest != INT_MAX) //no need for if branch
+                    sum = min(sum, next+dp[j+1][(sub-1)&1]);  
                 }
-                for(int j=i;j<n;j++){
-                    dp[d][i] = min(dp[d][i],
-                                   *std::max_element(arr.begin()+i,arr.begin()+j+1)
-                                   +dp[d-1][j+1]);
-                }
+                dp[i][sub&1] = sum;
             }
         }
-        return dp[day][0];
+        return dp[0][d&1]>=1e6 ?-1:dp[0][d&1];
     }
 };
+
