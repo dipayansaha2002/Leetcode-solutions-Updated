@@ -1,22 +1,31 @@
-class Solution {
-public:
+class Solution{
+    public:
+    
     bool makeEqual(vector<string>& words) {
-        //Array to store the count of each character (initialized to 0)
-        vector<int> characterCount(26, 0);
-        
-        for (const string& inputWord : words) {
-            for (char inputChar : inputWord){
-                characterCount[inputChar - 'a']++;
-            }
+    //Optimizing input/output operations for speed
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
+
+    //Initialize an array to store character frequencies
+    int freq[26] = {0};
+    int n = words.size(); // Total number of strings
+
+    //Iterate through each string in the array
+    for(auto x : words) {
+        //Update character frequencies
+        for(auto ch : x) {
+            freq[ch - 'a']++;
         }
-        //Check if the count of each character is divisible by the total number of words.
-        for (int count : characterCount) {
-            if (count % words.size() != 0) {
-                //If not divisible, characters cannot be rearranged to make all words equal.
-                return false;
-            }
-        }
-        //If all characters can be rearranged to make words equal, return true.
-        return true;
     }
+
+    //Check if character counts are divisible by the total number of strings
+    for(int i = 0; i < 26; i++) {
+        if(freq[i] % n != 0)
+            return false;
+    }
+
+    //All strings can be made equal
+    return true;
+}
 };
