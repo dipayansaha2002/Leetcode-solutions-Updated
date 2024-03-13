@@ -1,15 +1,13 @@
 class Solution {
 public:
     bool containsDuplicate(vector<int>& nums) {
-        unordered_set<int> us;
-        for(int num: nums)
-        {
-            if(us.find(num)!= us.end())
-                return true;
-            us.insert(num);
+        unordered_map<int, int> frequency;
+
+        for (int num : nums) {
+            if (++frequency[num] > 1) {
+                return true; 
+            }
         }
-
-        return false;
-
+       return false; 
     }
 };
