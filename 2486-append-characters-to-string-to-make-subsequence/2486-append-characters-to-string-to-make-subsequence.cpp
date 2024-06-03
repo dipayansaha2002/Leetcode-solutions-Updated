@@ -7,7 +7,7 @@ public:
         int j = 0;
         while (i < m && j < n) {
             if (s[i] == t[j]) 
-                    j++;                
+                j++;                
                 i++;
             }    
         return n - j;
