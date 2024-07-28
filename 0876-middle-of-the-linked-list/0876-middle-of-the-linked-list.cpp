@@ -11,18 +11,14 @@
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
-        ListNode* fast = head ;
-        ListNode* slow = head ;
-        while( fast != NULL ){
-            fast = fast->next ;
-            if( fast == NULL ){
-                break ;
-            }
-            else{
-                fast = fast->next ;
-                slow = slow->next ;
-            }
+        if(head == NULL) return head; //no middle for empty ll
+        
+        ListNode* slow = head, *fast = head;
+        
+        while( fast != NULL && fast->next != NULL){
+            slow = slow->next; //slow moves by 1
+            fast = fast->next->next; //fats moves by 2
         }
-        return slow;
+        return slow; //when fast reaches end, slow is at middle
     }
 };
