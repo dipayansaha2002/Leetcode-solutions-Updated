@@ -9,7 +9,7 @@
 class Solution {
 public:
     void deleteNode(ListNode* node) {
-        node->val = node->next->val; 
-        node->next = node->next->next; 
+        node->val = node->next->val; //assigned the next node->val to curr node
+        node->next = node->next->next; //same with ptr reference.
     }
 };
