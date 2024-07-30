@@ -11,27 +11,43 @@
 class Solution {
 public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
-        ListNode* temp=new ListNode();
-        temp->next=head;
+        if(head == NULL) {
+        return NULL;
+    }
+    int cnt = 0;
+    ListNode* temp = head;
 
-        ListNode* fast=temp;
-        ListNode* slow=temp;
+    //Count the number of nodes in the linked list
+    while (temp != NULL) {
+        cnt++;
+        temp = temp->next;
+    }
 
-        for(int i=1;i<=n;i++){
-             fast=fast->next;
+    //If n equals the total number of
+    // nodes, delete the head
+    if (cnt == n) {
+        ListNode* newhead = head->next;
+        delete (head);
+        return newhead;
+    }
+
+    // Calculate the position of the node to delete (res)
+    int res = cnt - n;
+    temp = head;
+
+    // Traverse to the node just before the one to delete
+    while (temp != NULL) {
+        res--;
+        if (res == 0) {
+            break;
         }
+        temp = temp->next;
+    }
 
-        while(fast->next!=NULL){
-            fast=fast->next;
-            slow=slow->next;
-        }
-
-        ListNode* gaya=slow->next;
-        slow->next=slow->next->next;
-        delete(gaya);
-        
-        return temp->next;
+    // Delete the Nth node from the end
+    ListNode* delNode = temp->next;
+    temp->next = temp->next->next;
+    delete (delNode);
+    return head;
     }
 };
-
-
