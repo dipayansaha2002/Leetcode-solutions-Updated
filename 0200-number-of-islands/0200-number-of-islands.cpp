@@ -12,14 +12,14 @@ private:
             int r = q.front().first ;
             int c = q.front().second ;
             q.pop();
-               for(int k=0; k<4; k++){
+               for(int k=0; k<4; k++){ //for all the possibilities around the grid
                  int newrow = r + delrow[k];
                  int newcol = c + delcol[k];
                  
-                 if(newrow>=0 && newrow<row && newcol>=0 && newcol<col 
-                    && grid[newrow][newcol]=='1' && !vis[newrow][newcol])
+         if(newrow>=0 && newrow<row && newcol>=0 && newcol<col 
+            && grid[newrow][newcol]=='1' && !vis[newrow][newcol])
         {
-            vis[newrow][newcol]=1;
+            vis[newrow][newcol] = 1;
             q.push({newrow,newcol});
         }
            }
@@ -30,8 +30,8 @@ public:
     int numIslands(vector<vector<char>>& grid) {
         int n = grid.size();
         int m = grid[0].size();
-        vector<vector<int>> vis(n, vector<int>(m,0));
-        int count = 0;
+        vector<vector<int>> vis(n, vector<int>(m,0));//to store visited grid
+        int count = 0; 
         for(int i=0; i<n; i++){
             for(int j=0; j<m; j++){
                 if(!vis[i][j] && grid[i][j]=='1'){
@@ -40,6 +40,6 @@ public:
                 }
             }
         }
-        return count;
+        return count;//number of islands
     }
 };
