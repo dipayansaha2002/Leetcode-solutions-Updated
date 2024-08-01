@@ -1,28 +1,45 @@
 class Solution {
+private:
+    void bfs(vector<vector<char>>& grid, int i, int j, vector<vector<int>>& vis){
+        vis[i][j] = 1;
+        queue<pair<int,int>> q;
+        q.push({i,j});
+        int row = grid.size();
+        int col = grid[0].size();
+        int delrow[4] = {-1,0,1,0};
+        int delcol[4] = {0,1,0,-1};
+        while(!q.empty()){
+            int r = q.front().first ;
+            int c = q.front().second ;
+            q.pop();
+               for(int k=0; k<4; k++){
+                 int newrow = r + delrow[k];
+                 int newcol = c + delcol[k];
+                 
+                 if(newrow>=0 && newrow<row && newcol>=0 && newcol<col 
+                    && grid[newrow][newcol]=='1' && !vis[newrow][newcol])
+        {
+            vis[newrow][newcol]=1;
+            q.push({newrow,newcol});
+        }
+           }
+        }
+    }
+    
 public:
     int numIslands(vector<vector<char>>& grid) {
-        int m = grid.size(), n = m ? grid[0].size() : 0, islands = 0, offsets[] = {0, 1, 0, -1, 0};
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (grid[i][j] == '1') {
-                    islands++;
-                    grid[i][j] = '0';
-                    queue<pair<int, int>> todo;
-                    todo.push({i, j});
-                    while (!todo.empty()) {
-                        pair<int, int> p = todo.front();
-                        todo.pop();
-                        for (int k = 0; k < 4; k++) {
-                            int r = p.first + offsets[k], c = p.second + offsets[k + 1];
-                            if (r >= 0 && r < m && c >= 0 && c < n && grid[r][c] == '1') {
-                                grid[r][c] = '0';
-                                todo.push({r, c});
-                            }
-                        }
-                    }
+        int n = grid.size();
+        int m = grid[0].size();
+        vector<vector<int>> vis(n, vector<int>(m,0));
+        int count = 0;
+        for(int i=0; i<n; i++){
+            for(int j=0; j<m; j++){
+                if(!vis[i][j] && grid[i][j]=='1'){
+                    bfs(grid, i, j, vis);
+                    count++;
                 }
             }
         }
-        return islands;
+        return count;
     }
 };
