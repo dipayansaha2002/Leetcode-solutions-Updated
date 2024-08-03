@@ -9,26 +9,23 @@
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
-	
-		// making two pointers fast and slow and assignning them to head
-        ListNode *fast = head;
-        ListNode *slow = head;
-        
-		// till fast and fast-> next not reaches NULL
-		// we will increment fast by 2 step and slow by 1 step
-        while(fast != NULL && fast ->next != NULL)
-        {
-            fast = fast->next->next;
-            slow = slow->next;
-            
-			
-			// At the point if fast and slow are at same address
-			// this means linked list has a cycle in it.
-            if(fast == slow)
-                return true;
+        if (head == NULL || head->next == NULL) {
+            return false;
         }
-        
-		// if traversal reaches to NULL this means no cycle.
-        return false;
+
+        ListNode *slow = head;
+        ListNode *fast = head;
+
+        //Move slow by one step and fast by two steps
+        while (fast != nullptr && fast->next != nullptr) {
+            slow = slow->next;
+            fast = fast->next->next;
+
+            if (slow == fast) {
+                return true; //Cycle detected
+            }
+        }
+
+        return false; //No cycle
     }
 };
