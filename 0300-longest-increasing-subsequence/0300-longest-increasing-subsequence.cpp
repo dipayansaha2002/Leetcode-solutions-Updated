@@ -1,21 +1,21 @@
 class Solution {
 public:
     int lengthOfLIS(vector<int>& nums) {
-        vector<int> tails(nums.size(), 0);
-        int size = 0;
-
-        for (int x : nums) {
-            int i = 0, j = size;
-            while (i != j) {
-                int m = (i + j) / 2;
-                if (tails[m] < x)
-                    i = m + 1;
-                else
-                    j = m;
+        vector<int> temp;
+        int n = nums.size();
+        temp.push_back(nums[0]);
+        int len = 1;
+        for(int i=1; i<n; i++){
+            if(nums[i] > temp.back()){
+                temp.push_back(nums[i]);
+                len++;
             }
-            tails[i] = x;
-            if (i == size) ++size;
+            else{
+                int ind = 
+        lower_bound(temp.begin(), temp.end(), nums[i]) - temp.begin();
+                temp[ind] = nums[i];
+            }
         }
-        return size;
+        return len;
     }
 };
