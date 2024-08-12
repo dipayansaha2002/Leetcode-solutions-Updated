@@ -23,9 +23,12 @@ public:
         int front = 0;
         int rear = res.size()-1;
         while(front<rear){
-            if(res[front]+res[rear] == k) return true;
-            if(res[front]+res[rear] > k) rear--;
-            else front++;
+            if(res[front]+res[rear] == k) 
+                return true;
+            if(res[front]+res[rear] > k) 
+                rear--;
+            else 
+                front++;
         }
         return false;
     }
