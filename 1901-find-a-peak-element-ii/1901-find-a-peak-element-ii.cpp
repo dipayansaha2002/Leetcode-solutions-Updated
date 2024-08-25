@@ -1,7 +1,7 @@
 class Solution {
 public:
     int findMaxIndex(vector<vector<int>>& mat, int n, int m, int col){
-        if(col < 0 || col >= m) return -1; //to avoid heap overflow
+        //if(col < 0 || col >= m) return -1; //to avoid heap overflow
         int maxIndexEle = -1;
         int index = -1;
         for(int i=0; i<n; i++){
