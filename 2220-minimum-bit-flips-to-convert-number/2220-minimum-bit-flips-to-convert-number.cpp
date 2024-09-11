@@ -1,17 +1,14 @@
 class Solution {
 public:
     int minBitFlips(int start, int goal) {
-        int flips = 0, i = 0;
-        while(start != goal){
-            int mask = 1 << i;
-            if((start & mask) == (goal & mask)){
-                i++;
-            }else{
-                start = start ^ mask;
-                flips++;
-                i++;
+        int a = (start ^ goal); //XOR gives the setbits
+        int count = 0; //count the set bits
+        while(a){
+            if(a&1){ //AND gives 1 with a(having set bit 1) 
+                count++;
             }
+        a = a>>1; //if not set bit, then do rightshift
         }
-        return flips;
+        return count;
     }
 };
