@@ -12,14 +12,17 @@ class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
         ListNode* temp = head;
-        ListNode* prev = NULL;
-        
-        while(temp!=NULL){
-           ListNode* front = temp->next;//assigned the front 
-           temp->next = prev;//connected temp to prev
-           prev = temp;//prev becomes temp
-           temp = front;//temp becomes front
+        stack<int> st;
+        while(temp != NULL){
+            st.push(temp->val);
+            temp = temp->next;
         }
-        return prev;
+        temp = head;
+        while(temp != NULL){
+            temp->val = st.top();
+            st.pop();
+            temp = temp->next;
+        }
+        return head;
     }
 };
