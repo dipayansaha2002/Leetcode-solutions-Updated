@@ -28,9 +28,11 @@ public:
         }
         if(list1){
             temp->next = list1;//if only list1 exists then update temp->next
+            temp = temp->next;
         }
         if(list2){
             temp->next = list2;//if only list2 exists then update temp->next
+            temp = temp->next;
         }
         return dummy->next;//return from the next of the dummy
     }
